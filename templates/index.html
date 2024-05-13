@@ -67,6 +67,9 @@
             font-size: 12px;
             font-weight: 400;
         }
+        .front>img {
+            cursor: pointer;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -83,6 +86,7 @@
         {% endif %}
     </div>
     {% if articles %}
+        <hr>
         <section class="main-content">
             <section class="recent-articles-sect">
                 <h2 class="subheading">Recent Articles</h2>

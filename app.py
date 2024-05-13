@@ -82,7 +82,7 @@ def paw_print_page(title):
     paper = getPostByUST(title)
     if not paper:return redirect('/')
     path=f'slides/{title}'
-    slides = os.listdir(path)[::-1]
+    slides = sorted(os.listdir(path),key=lambda x:int(x[6:-4]))
     return render_template('pawprint.html',title=paper[0],publish_date=dateToTextDate(paper[2]),slides=slides,slides_url=paper[3],id=title)
 @app.route('/slides/<id>/<slide>')
 def slide(id,slide):
@@ -93,7 +93,15 @@ def slide(id,slide):
 def recent_page_redirect():
     try:return redirect('/pawprint/'+getMostRecentPost()[0][0])
     except:return redirect('/')
+@app.route('/slide_download_progress/<id>')
+def slide_download_progress_api(id):
+    print(id)
+    if not id:return {"status":"error","error":"no `slides_id` provided"}
+    slides_folder=os.path.join('slides',id)
+    if os.path.exists(slides_folder):return {"status":"downloading","slides_downloaded":len(os.listdir(slides_folder))}
+    else:return {"status":"non-existant folder"}
 
+        
 
 def run(online=True):app.run(host='0.0.0.0'if online else None,port=8881)
 run()

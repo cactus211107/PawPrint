@@ -39,11 +39,12 @@ input[type="password"],input[type="text"] {
 input[type='submit'] {
     padding: 8px;
     border: none;
-    background-color: #5a95f1;
+    background-color: var(--color-primary);
     transition: background-color 0.2s;
+    color: white;
     border-radius: 4px;
     cursor: pointer;
 }
 input[type='submit']:hover {
-    background-color: #2762cd;
+    background-color: #122560;
 }
