@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <style>
+        form {
+            width: 500px;
+            height: 600px;
+        }
+        input[name="url"] {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <form action="/add" method="post">
+        <div>
+            <h2>Add a paper!</h2>
+            <p>To add content to the <i>Paw Print</i>, follow the instructions below.</p>
+            <ol>
+                <li>Set the access of the Google Slide to "Anyone With the Link" and click "Done"</li>
+                <li>Paste the Google Slide's URL below</li>
+                <li>Add a title below</li>
+                <li>Done!</li>
+            </ol>
+        </div>
+        <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" placeholder="Paw Print Week #11" title="Title" required>
+        </div>
+        <div>
+            <label for="url">Google Slide URL</label>
+            <input type="text" name="url" placeholder="https://docs.google.com/presentation/d/______/edit" title="Google Slides URL" required>
+        </div>
+        <input type="submit" value="Add Paper!">
+    </form>
+{% endblock %}

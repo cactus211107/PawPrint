@@ -1,0 +1,49 @@
+.content * {
+    --slide-max-width:1000px;
+}
+.front {
+    display: flex;
+    justify-content: center;   
+    margin-top: 16px;     
+}
+.front>img {
+    width: 100vw;
+    max-width: var(--slide-max-width);
+    height: auto;
+    overflow-x: hidden;
+}
+.titles {
+    position: absolute;
+    top: 230px;
+}
+@media (max-width:700px) {
+    .titles {
+        top: 130px;
+        font-size: 0.75em;
+    }
+}
+.titles>*{
+    color: white;
+    text-shadow: 0 0 1.5px black;
+}
+.titles h1 {
+    font-size: 3em;
+    text-shadow: 0 0 3px black;
+}
+.slides,.titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.slides {
+    gap: 12px;
+}
+.slide {
+    width: auto;
+    max-width: var(--slide-max-width);
+    height: calc(var(--full-height-no-nav) - 50px);
+}
+hr {
+    width: 40%;
+    margin: 20px auto;
+}

@@ -1,0 +1,17 @@
+{% extends 'template.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/admin.css">
+{% endblock %}
+{% block content %}
+    <form action="/pw" method="post">
+        <div>
+            <h2>Hold up!</h2>
+            <p>In order to add content to the <i>Paw Print</i>, you need authorize yourself by typing in the password below.</p>
+        </div>
+        <div>
+            <label for="pw">Password:</label>
+            <input type="password" name="pw" placeholder="" title="Password">
+        </div>
+        <input type="submit" value="Access">
+    </form>
+{% endblock %}

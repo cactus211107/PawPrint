@@ -1,0 +1,101 @@
+{% extends 'template.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/pawprint.css">
+    <style>
+        h1,h2,h3 {
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .subheading {
+            font-size: 32px;
+        }
+        .front {
+            max-height: calc(var(--full-height-no-nav) - 200px);
+            padding: 12px;
+        }
+        .logo-front {
+            width: 75px;
+            height: 75px;
+        }
+        .recent-articles-sect {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .recent-articles {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+        .article {
+            cursor: pointer;
+            color: black;
+            text-decoration: none;
+            padding: 24px 24px 12px 24px;
+            border-radius: 4px;
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            font-size: 1.25em;
+            gap: 3px;
+            background-color: #fff;
+            transition: background-color 0.1s;
+        }
+        .article:hover {
+            background-color: #f3f3f3;
+        }
+        .article img {
+            width: 100%;
+            height: auto;
+        }
+        .article-title,.article-date {
+            max-width: 116px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .article-title {
+            color: var(--color-primary);
+        }
+        .article-date {
+            font-size: 12px;
+            font-weight: 400;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="front" {% if title %}onclick="window.location.href='/pawprint/{{ id }}'"{% else %} style="flex-direction: column;"{% endif %}>
+        {% if title %}
+        <img src="/slides/{{ id }}/slide_0.svg" onclick="window.location.href='/pawprint/{{ id }}'" alt="Front Image (first slide of most recent paper)">
+        <!-- <div class="titles">
+            <img src="/static/i/paw-print.svg" alt="Paw Print" class="logo-front">
+            <h1>{{ title }}</h1>
+        </div> -->
+        {% else %}
+        <h1 class='no-content-h1'>No content here... yet!</h1>
+        <h3 class='no-content-h3'>If you are an administrator of the <i>Paw Print</i>, you can add content <a href="/add">here</a>.</h3>
+        {% endif %}
+    </div>
+    {% if articles %}
+        <section class="main-content">
+            <section class="recent-articles-sect">
+                <h2 class="subheading">Recent Articles</h2>
+                <div class="recent-articles">
+                    {% for article in articles %}
+                        <a class="article" href="/pawprint/{{ article[0] }}">
+                            <img src="/slides/{{ article[0] }}/slide_0.svg" alt="Article Thumbnail" draggable="false">
+                            <span class="article-title">{{ article[1] }}</span>
+                            <span class="article-date">{{ date(article[2]) }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </section>
+        </section>
+    {% endif %}
+{% endblock %}

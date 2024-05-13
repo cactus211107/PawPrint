@@ -1,0 +1,6 @@
+.DS_STORE
+.venv
+*.db
+html.html
+slides
+db.cpython-*
