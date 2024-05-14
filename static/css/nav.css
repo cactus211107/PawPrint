@@ -11,6 +11,10 @@
     font-family: var(--font-family-primary), 'Roboto', 'Arial', sans-serif;
     line-height: 1.25;
 }
+a:hover {
+    color: var(--color-secondary) !important;
+    transition: color 0.3s ease-out;
+}
 .content {
     margin-bottom: 25px;
 }
@@ -76,10 +80,6 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 400;
     text-decoration: none;
     transition: color 0.3s ease-out;
-}
-
-.nav-item a:hover {
-    color: #3498db;
 }
 
 /* SECTIONS */
