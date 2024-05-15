@@ -1,8 +1,7 @@
-import subprocess
 from typing import Literal
 from flask import *
 from bs4 import BeautifulSoup as Soup
-import requests,re,os,db,bs4.element,datetime
+import requests,re,os,db,bs4.element,datetime,subprocess
 
 app = Flask(__name__)
 os.environ['PASSWORD']='AISCT_PAW_PRINT_ADMIN'
