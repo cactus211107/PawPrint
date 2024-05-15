@@ -1,4 +1,5 @@
 import subprocess
+from typing import Literal
 from flask import *
 from bs4 import BeautifulSoup as Soup
 import requests,re,os,db,bs4.element,datetime
@@ -103,8 +104,6 @@ def slide_download_progress_api(id):
     if os.path.exists(slides_folder):return {"status":"downloading","slides_downloaded":len(os.listdir(slides_folder))}
     else:return {"status":"non-existant folder"}
 @app.context_processor
-def py_functions():return{'date':dateToTextDate}
-        
-
-def run(online:bool=True,port=8881):subprocess.call(f'open -a "Microsoft Edge" http://{"0.0.0.0"if online else f"127.0.0.1"}:{port}',shell=True);app.run(host='0.0.0.0'if online else None,port=port)
+def py_functions():return{'date':dateToTextDate}   
+def run(online:bool=True,port=8881,browser:Literal['Microsoft Edge','Google Chrome']="Microsoft Edge"):subprocess.call(f'open -a "{browser}" http://{"0.0.0.0"if online else f"127.0.0.1"}:{port}',shell=True);app.run(host='0.0.0.0'if online else None,port=port)
 run(0)
