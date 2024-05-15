@@ -1,3 +1,4 @@
+import subprocess
 from flask import *
 from bs4 import BeautifulSoup as Soup
 import requests,re,os,db,bs4.element,datetime
@@ -10,7 +11,7 @@ db.initDB('database.db')
 db.executeFile('.sql')
 
 
-def downloadSlideshow(id,path):
+def downloadSlideshow(id:str,path:str|os.PathLike):
     slides=[]
     page=requests.get(f'https://docs.google.com/presentation/d/{id}/edit').text
     with open('html.html','w') as f:f.write(page)
@@ -29,8 +30,8 @@ def downloadSlideshow(id,path):
         with open(name,'w') as f:
             f.write(r.text)
     return slides
-def getSlideshowIDFromURL(url):return url.split('/')[-2]
-def addPost(title,slide_url):
+def getSlideshowIDFromURL(url:str):return url.split('/')[-2]
+def addPost(title:str,slide_url:str):
     url_safe_title=title_to_id(title)
     gid=getSlideshowIDFromURL(slide_url)
     date = datetime.datetime.now()
@@ -38,11 +39,11 @@ def addPost(title,slide_url):
     if len(s)==0:return None
     db.execute('INSERT INTO PAPERS VALUES (?,?,?,?)',(title,url_safe_title,date,slide_url))
     return url_safe_title
-def getMostRecentPost(p='URL_SAFE_TITLE',n=1):
+def getMostRecentPost(p:str='URL_SAFE_TITLE',n:int=1):
     return db.execute(f'SELECT {p} FROM PAPERS ORDER BY PUBLISH_DATE DESC LIMIT {n}').fetchall()
-def getPostByUST(ust): #UST==UrlSafeTitle
+def getPostByUST(ust:str): #UST==UrlSafeTitle
     return db.execute(f'SELECT * FROM PAPERS WHERE URL_SAFE_TITLE="{ust}"').fetchone()
-def dateToTextDate(date):
+def dateToTextDate(date:str):
     date = date.split('-')
     year = date[0]
     m=["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -105,5 +106,5 @@ def slide_download_progress_api(id):
 def py_functions():return{'date':dateToTextDate}
         
 
-def run(online=True):app.run(host='0.0.0.0'if online else None,port=8881)
-run()
+def run(online:bool=True,port=8881):subprocess.call(f'open -a "Microsoft Edge" http://{"0.0.0.0"if online else f"127.0.0.1"}:{port}',shell=True);app.run(host='0.0.0.0'if online else None,port=port)
+run(0)
