@@ -30,11 +30,11 @@
         </div>
         <div>
             <label for="title">Title</label>
-            <input type="text" name="title" placeholder="Paw Print Week #11" title="Title" required>
+            <input type="text" name="title" placeholder="Paw Print Week #11" title="Title" autocomplete="off" required>
         </div>
         <div>
             <label for="url">Google Slide URL</label>
-            <input type="text" name="url" placeholder="https://docs.google.com/presentation/d/______/edit" title="Google Slides URL" required>
+            <input type="text" name="url" placeholder="https://docs.google.com/presentation/d/______/edit" title="Google Slides URL" autocomplete="off" required>
         </div>
         <input type="submit" value="Add Paper!">
         <div id="update_text"></div>
@@ -45,7 +45,7 @@
         const update_text=document.querySelector('#update_text')
         form.onsubmit=()=>{
             setInterval(()=>{
-                const id=input.value.replaceAll(' ','-').replaceAll(/[^a-z0-9-]/g,'')
+                const id=input.value.replaceAll(' ','-').replaceAll('/','').replaceAll(/[^a-z0-9-]/g,'')
                 fetch('/slide_download_progress/'+id).then(result=>result.json()).then(response=>{
                     console.log(response)
                     if (response.status == 'downloading') {

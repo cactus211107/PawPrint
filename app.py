@@ -31,7 +31,7 @@ def downloadSlideshow(id,path):
     return slides
 def getSlideshowIDFromURL(url):return url.split('/')[-2]
 def addPost(title,slide_url):
-    url_safe_title=re.sub("[^a-z0-9-]", "", title.lower().replace(" ", "-"))
+    url_safe_title=title_to_id(title)
     gid=getSlideshowIDFromURL(slide_url)
     date = datetime.datetime.now()
     s=downloadSlideshow(gid,f'slides/{url_safe_title}')
@@ -49,7 +49,8 @@ def dateToTextDate(date):
     month = m[int(date[1])-1]
     day = date[2].split(' ')[0]
     return f'{month} {day}, {year}'
-
+def title_to_id(title:str):
+    return re.sub("[^a-z0-9-]", "", title.lower().replace(" ", "-").replace('/',''))
 
 
 @app.route('/')
@@ -58,7 +59,7 @@ def index():
     except Exception as e:print(e);title,id='',''
     try:articles=getMostRecentPost('*',4)[1:] # gets the 3 articles after the first one
     except Exception as e:print(e);articles=[]
-    return render_template('index.html',title=title,id=id,articles=articles,date=dateToTextDate)
+    return render_template('index.html',title=title,id=id,articles=articles)
 
 @app.route('/pw',methods=['GET','POST'])
 def pw():
@@ -100,7 +101,8 @@ def slide_download_progress_api(id):
     slides_folder=os.path.join('slides',id)
     if os.path.exists(slides_folder):return {"status":"downloading","slides_downloaded":len(os.listdir(slides_folder))}
     else:return {"status":"non-existant folder"}
-
+@app.context_processor
+def py_functions():return{'date':dateToTextDate}
         
 
 def run(online=True):app.run(host='0.0.0.0'if online else None,port=8881)
