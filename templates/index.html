@@ -7,10 +7,6 @@
     <div class="front" {% if title %}onclick="window.location.href='/pawprint/{{ id }}'"{% else %} style="flex-direction: column;"{% endif %}>
         {% if title %}
         <img src="/slides/{{ id }}/slide_0.svg" onclick="window.location.href='/pawprint/{{ id }}'" alt="Front Image (first slide of most recent paper)">
-        <!-- <div class="titles">
-            <img src="/static/i/paw-print.svg" alt="Paw Print" class="logo-front">
-            <h1>{{ title }}</h1>
-        </div> -->
         {% else %}
         <h1 class='no-content-h1'>No content here... yet!</h1>
         <h3 class='no-content-h3'>If you are an administrator of the <i>Paw Print</i>, you can add content <a href="/add">here</a>.</h3>
