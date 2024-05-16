@@ -1,7 +1,7 @@
 from typing import Literal
 from flask import *
 from bs4 import BeautifulSoup as Soup
-import requests,re,os,db,bs4.element,datetime,subprocess
+import requests,re,os,db,bs4.element,datetime,subprocess,sitemap
 
 app = Flask(__name__)
 os.environ['PASSWORD']='AISCT_PAW_PRINT_ADMIN'
@@ -38,6 +38,7 @@ def addPost(title:str,slide_url:str):
     s=downloadSlideshow(gid,f'slides/{url_safe_title}')
     if len(s)==0:return None
     db.execute('INSERT INTO PAPERS VALUES (?,?,?,?)',(title,url_safe_title,date,slide_url))
+    sitemap.generateSitemap()
     return url_safe_title
 def getMostRecentPost(p:str='URL_SAFE_TITLE',n:int=1):
     return db.execute(f'SELECT {p} FROM PAPERS ORDER BY PUBLISH_DATE DESC LIMIT {n}').fetchall()
