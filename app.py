@@ -102,6 +102,14 @@ def slide_download_progress_api(id):
     slides_folder=os.path.join('slides',id)
     if os.path.exists(slides_folder):return {"status":"downloading","slides_downloaded":len(os.listdir(slides_folder))}
     else:return {"status":"non-existant folder"}
+
+
+@app.route('/robots.txt')
+def robots_txt():return send_file('robots.txt')
+@app.route('/sitemap.xml')
+def robots_txt():return send_file('sitemap.xml')\
+
+
 @app.context_processor
 def py_functions():return{'date':dateToTextDate}   
 def run(online:bool=True,port=8881,browser:Literal['Microsoft Edge','Google Chrome']="Microsoft Edge"):subprocess.call(f'open -a "{browser}" http://{"0.0.0.0"if online else f"127.0.0.1"}:{port}',shell=True);app.run(host='0.0.0.0'if online else None,port=port)
