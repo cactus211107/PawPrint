@@ -108,7 +108,7 @@ def slide_download_progress_api(id):
 @app.route('/robots.txt')
 def robots_txt():return send_file('robots.txt')
 @app.route('/sitemap.xml')
-def robots_txt():return send_file('sitemap.xml')\
+def sitemap_xml():return send_file('sitemap.xml')
 
 
 @app.context_processor
