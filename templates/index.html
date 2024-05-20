@@ -12,9 +12,9 @@
         <h3 class='no-content-h3'>If you are an administrator of the <i>Paw Print</i>, you can add content <a href="/add">here</a>.</h3>
         {% endif %}
     </div>
-    {% if articles %}
-        <hr>
-        <section class="main-content">
+    <section class="main-content">
+        {% if articles %}
+            <hr>
             <section class="recent-articles-sect">
                 <h2 class="subheading">Recent Articles</h2>
                 <div class="recent-articles">
@@ -27,6 +27,12 @@
                     {% endfor %}
                 </div>
             </section>
+        {% endif %}
+        <hr>
+        <section class="about-preview">
+            <h2 class="subheading">About The Paw Print</h2>
+            <iframe class="about-preview-iframe" src="/about" frameborder="0" title="about page preview" scrolling="off"></iframe>
+            <div class="iframe-shadow"></div>
         </section>
-    {% endif %}
+    </section>
 {% endblock %}

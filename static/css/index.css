@@ -14,7 +14,7 @@ h1,h2,h3 {
     width: 75px;
     height: 75px;
 }
-.recent-articles-sect {
+.main-content > section {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -65,4 +65,17 @@ h1,h2,h3 {
 }
 .front>img {
     cursor: pointer;
+}
+.about-preview-iframe {
+    height: 400px;
+}
+.about-preview-iframe,.iframe-shadow {
+    width: 50%;
+}
+.iframe-shadow {
+    z-index: 3333;
+    margin-top:350px;
+    height: 50px;
+    background: linear-gradient(0deg, white, transparent);
+    position: absolute;
 }
