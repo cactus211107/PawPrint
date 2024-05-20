@@ -10,7 +10,7 @@ app.secret_key='just a random key i ate for breakfast today' # look... I had to 
 db.initDB('database.db')
 db.executeFile('.sql')
 
-import sitemap
+import sitemap # must be here
 
 def downloadSlideshow(id:str,path:str|os.PathLike):
     slides=[]
