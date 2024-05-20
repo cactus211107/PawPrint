@@ -19,9 +19,9 @@
                 <h2 class="subheading">Recent Articles</h2>
                 <div class="recent-articles">
                     {% for article in articles %}
-                        <a class="article" href="/pawprint/{{ article[0] }}">
-                            <img src="/slides/{{ article[0] }}/slide_0.svg" alt="Article Thumbnail" draggable="false">
-                            <span class="article-title">{{ article[1] }}</span>
+                        <a class="article" href="/pawprint/{{ article[1] }}">
+                            <img src="/slides/{{ article[1] }}/slide_0.svg" alt="Article Thumbnail" draggable="false">
+                            <span class="article-title">{{ article[0] }}</span>
                             <span class="article-date">{{ date(article[2]) }}</span>
                         </a>
                     {% endfor %}

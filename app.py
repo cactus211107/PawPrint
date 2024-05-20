@@ -1,7 +1,7 @@
 from typing import Literal
 from flask import *
 from bs4 import BeautifulSoup as Soup
-import requests,re,os,db,bs4.element,datetime,subprocess,sitemap
+import requests,re,os,db,bs4.element,datetime,subprocess
 
 app = Flask(__name__)
 os.environ['PASSWORD']='AISCT_PAW_PRINT_ADMIN'
@@ -10,6 +10,7 @@ app.secret_key='just a random key i ate for breakfast today' # look... I had to 
 db.initDB('database.db')
 db.executeFile('.sql')
 
+import sitemap
 
 def downloadSlideshow(id:str,path:str|os.PathLike):
     slides=[]
@@ -114,4 +115,4 @@ def sitemap_xml():return send_file('sitemap.xml')
 @app.context_processor
 def py_functions():return{'date':dateToTextDate}   
 def run(online:bool=True,port=8881,browser:Literal['Microsoft Edge','Google Chrome']="Microsoft Edge"):subprocess.call(f'open -a "{browser}" http://{"0.0.0.0"if online else f"127.0.0.1"}:{port}',shell=True);app.run(host='0.0.0.0'if online else None,port=port)
-run(0)
+run()

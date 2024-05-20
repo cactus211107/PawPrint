@@ -25,6 +25,7 @@
 .titles>*{
     color: white;
     text-shadow: 0 0 1.5px black;
+    text-align: center;
 }
 .titles h1 {
     font-size: 3em;
@@ -40,11 +41,15 @@
 }
 .slide {
     width: auto;
-    max-width: 100vw;
-    max-width: var(--slide-max-width);
+    max-width: 720px;
     height: calc(var(--full-height-no-nav) - 50px);
 }
 hr {
     width: 40%;
     margin: 20px auto;
+}
+@media (min-width: 630px) {
+    .slide {
+        height: auto !important;
+    }
 }
