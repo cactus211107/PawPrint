@@ -7,4 +7,4 @@ Disallow: /pawprint/*
 Disallow: /slides/*
 Disallow: /slide_download_progress/*
 
-Sitemap: https://www.google.com/sitemap.xml
+Sitemap: /sitemap.xml
