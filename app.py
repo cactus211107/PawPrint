@@ -105,6 +105,9 @@ def slide_download_progress_api(id):
     if os.path.exists(slides_folder):return {"status":"downloading","slides_downloaded":len(os.listdir(slides_folder))}
     else:return {"status":"non-existant folder"}
 
+@app.root('/about')
+def about_page():
+    return render_template('about.html')
 
 @app.route('/robots.txt')
 def robots_txt():return send_file('robots.txt')
